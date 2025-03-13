@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MQTT Light Control</title>
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        h2 {
+            color: #2c3e50;
+        }
+
+        button {
+            padding: 15px 30px;
+            margin: 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        #onButton {
+            background-color: #4CAF50; /* Green */
+            color: white;
+        }
+
+        #onButton:hover {
+            background-color: #45a049;
+        }
+
+        #offButton {
+            background-color: #e74c3c; /* Red */
+            color: white;
+        }
+
+        #offButton:hover {
+            background-color: #c0392b;
+        }
+
+        p {
+            font-size: 20px;
+            margin-top: 40px;
+        }
+
+        #status {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>MQTT Light Control</h2>
+    <button id="onButton">Turn ON</button>
+    <button id="offButton">Turn OFF</button>
+    <p>Status: <span id="status">Waiting...</span></p>
+
+    <script>
+        const broker = "wss://test.mosquitto.org:8081"; // MQTT over WebSockets
+        const topic = "/student_group/light_control";
+        const client = mqtt.connect(broker);
+
+        client.on("connect", () => {
+            console.log("Connected to MQTT Broker!");
+        });
+
+        function publishMessage(message) {
+            client.publish(topic, message);
+            document.getElementById("status").innerText = "Last Sent: " + message;
+        }
+
+        document.getElementById("onButton").addEventListener("click", () => publishMessage("ON"));
+        document.getElementById("offButton").addEventListener("click", () => publishMessage("OFF"));
+    </script>
+</body>
+
+</html>
