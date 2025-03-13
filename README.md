@@ -51,9 +51,9 @@ python light_simulation.py
 ```
 
 ### 3. Launch the Web Interface
--Open index.html in your browser.
--Click the Turn ON or Turn OFF buttons.
--The Python script should print:
+- Open index.html in your browser.
+- Click the Turn ON or Turn OFF buttons.
+- The Python script should print:
 ```bash
 Light is TURNED ON
 Light is TURNED OFF
