@@ -22,10 +22,12 @@ This project simulates controlling an IoT-based light system:
 
 ## 📊 Project Structure
 
+```bash
 mqtt-light-control/ 
 ├── index.html # Web interface for controlling the light 
 ├── light_simulation.py # Simulated IoT device (ESP8266) using Python 
 └── README.md # Project documentation
+```
 
 
 ---
